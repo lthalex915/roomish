@@ -11,6 +11,7 @@
   --color-primary-fg: #1c1914;
   --color-border: #ddd4c0;
   --color-danger: #c4492a;
+  --color-ok: #2c7a3f;
   --color-warn: #b58112;
   --radius-lg: 0.5rem;
   --radius-xl: 1.25rem;
@@ -245,4 +246,20 @@
 
 .note-prose-coach .note-code {
   font-size: 0.75rem;
+}
+
+.note-prose-coach mjx-container {
+  font-size: 1.05em;
+}
+
+.note-feedback-ok .note-p,
+.note-feedback-ok .note-li,
+.note-feedback-ok {
+  color: var(--color-ok);
+}
+
+.note-feedback-bad .note-p,
+.note-feedback-bad .note-li,
+.note-feedback-bad {
+  color: var(--color-danger);
 }

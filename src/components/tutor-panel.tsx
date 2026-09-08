@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { completeChat } from "@/lib/ai/chat";
 import { TUTOR_SYSTEM } from "@/lib/ai/prompts";
 import { aiReady, useAiSettings } from "@/lib/ai/settings-store";
+import { typesetMath } from "@/lib/math/mathjax";
 import type { Check, Task } from "@/lib/room/schema";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -39,6 +40,7 @@ export function TutorPanel({
 
   useEffect(() => {
     logRef.current?.scrollTo({ top: logRef.current.scrollHeight, behavior: "smooth" });
+    void typesetMath(logRef.current);
   }, [messages, busy]);
 
   const context = [

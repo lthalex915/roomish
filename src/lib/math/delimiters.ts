@@ -32,6 +32,8 @@ export function parkMath(input: string): { markdown: string; slots: MathSlot[] }
   let text = ticks.text;
   const slots: MathSlot[] = [];
 
+  text = text.replace(/\\{2,}([()[\]])/g, "\\$1");
+
   const take = (display: boolean, tex: string) => {
     const i = slots.length;
     slots.push({ display, tex: tex.trim() });

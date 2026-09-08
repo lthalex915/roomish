@@ -2,7 +2,7 @@ import {
   Children,
   cloneElement,
   isValidElement,
-  useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   type ReactNode,
@@ -113,7 +113,7 @@ export function Prose({ text, className }: { text: string; className?: string })
   const { markdown, slots } = useMemo(() => parkMath(text), [text]);
   const components = useMemo(() => makeComponents(slots), [slots]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     void typesetMath(rootRef.current);
   }, [markdown, slots]);
 

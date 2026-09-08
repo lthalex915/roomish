@@ -211,6 +211,7 @@ function TaskView({
                   check={check}
                   value={value}
                   disabled={shown && ok}
+                  wrong={shown && !ok}
                   onChange={(v) => setSubmission(slug, check.qid, v)}
                 />
               </div>
@@ -219,7 +220,7 @@ function TaskView({
                   Check
                 </Button>
                 {shown ? (
-                  <div className={ok ? "text-ink" : "text-danger"}>
+                  <div className={ok ? "note-feedback-ok" : "note-feedback-bad"}>
                     {ok ? <Prose text={`Yes. ${check.explain}`} /> : <Prose text={`Not yet. ${check.hint || "Try another wording."}`} />}
                   </div>
                 ) : null}

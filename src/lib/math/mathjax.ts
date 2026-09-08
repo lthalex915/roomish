@@ -11,6 +11,7 @@ declare global {
 }
 
 let loading: Promise<void> | null = null;
+let queue: Promise<void> = Promise.resolve();
 
 export function loadMathJax(): Promise<void> {
   if (typeof window === "undefined") return Promise.resolve();
@@ -53,11 +54,15 @@ export function loadMathJax(): Promise<void> {
 
 export async function typesetMath(el: HTMLElement | null): Promise<void> {
   if (!el) return;
-  try {
+  const run = queue.then(async () => {
     await loadMathJax();
     const mj = window.MathJax;
     mj?.typesetClear?.([el]);
     await mj?.typesetPromise?.([el]);
+  });
+  queue = run.catch(() => undefined);
+  try {
+    await run;
   } catch {
     /* keep the TeX source visible if the CDN is blocked */
   }
