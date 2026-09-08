@@ -59,7 +59,9 @@ export function TutorPanel({
           apiKey: settings.apiKey,
           baseUrl: settings.baseUrl,
           model: settings.model,
-          maxTokens: 700,
+          maxTokens: 4096,
+          continueOnLength: true,
+          maxContinues: 2,
           messages: [
             { role: "system", content: TUTOR_SYSTEM },
             { role: "system", content: context },

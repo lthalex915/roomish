@@ -52,7 +52,10 @@ function ConvertPage() {
           apiKey: settings.apiKey,
           baseUrl: settings.baseUrl,
           model: settings.model,
-          maxTokens: 2800,
+          maxTokens: 16384,
+          continueOnLength: true,
+          maxContinues: 4,
+          completeJson: true,
           messages: [
             { role: "system", content: CONVERT_SYSTEM },
             {
@@ -68,6 +71,9 @@ function ConvertPage() {
       if (!result.ok) {
         toast.error(result.error);
         return;
+      }
+      if (result.truncated) {
+        toast.message("The model hit a length cap. Check the preview — you may need to compose again.");
       }
       const room = parseRoomJson(result.text);
       setPreview(JSON.stringify(room, null, 2));
