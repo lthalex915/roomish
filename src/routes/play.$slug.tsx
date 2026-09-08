@@ -64,7 +64,7 @@ function PlayPage() {
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,26rem)]">
       <div>
         <p className="text-sm text-muted">
           <Link to="/" className="text-muted">

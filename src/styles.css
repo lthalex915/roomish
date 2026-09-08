@@ -163,3 +163,37 @@
 .note-prose .katex {
   font-size: 1.08em;
 }
+
+.note-prose-coach {
+  max-width: none;
+}
+
+.note-prose-coach .note-p,
+.note-prose-coach .note-li {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.note-prose-coach .note-h {
+  margin: 0.7rem 0 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.note-prose-coach .note-quote {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.note-prose-coach .note-code {
+  font-size: 0.75rem;
+}
+
+.note-prose-coach .katex {
+  font-size: 1em;
+}

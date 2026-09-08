@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Prose } from "@/components/prose";
 import { Button } from "@/components/ui/button";
@@ -26,6 +26,20 @@ export function TutorPanel({
   const [messages, setMessages] = useState<Msg[]>([]);
   const [draft, setDraft] = useState("");
   const [busy, setBusy] = useState(false);
+  const logRef = useRef<HTMLDivElement>(null);
+  const pin = `${task.id}:${check.qid}`;
+  const reqId = useRef(0);
+
+  useEffect(() => {
+    reqId.current += 1;
+    setMessages([]);
+    setDraft("");
+    setBusy(false);
+  }, [pin]);
+
+  useEffect(() => {
+    logRef.current?.scrollTo({ top: logRef.current.scrollHeight, behavior: "smooth" });
+  }, [messages, busy]);
 
   const context = [
     `The learner pinned this exact question. Answer only this one unless they ask otherwise.`,
@@ -43,12 +57,18 @@ export function TutorPanel({
     .filter(Boolean)
     .join("\n");
 
+  function clearChat() {
+    setMessages([]);
+    setDraft("");
+  }
+
   async function ask(text: string) {
     if (!ready) {
       toast.message("Add a key under Keys first.");
       return;
     }
     const next: Msg[] = [...messages, { role: "user", content: text }];
+    const id = reqId.current;
     setMessages(next);
     setDraft("");
     setBusy(true);
@@ -69,32 +89,44 @@ export function TutorPanel({
           ],
         },
       });
+      if (reqId.current !== id) return;
       if (!result.ok) {
         toast.error(result.error);
         return;
       }
       setMessages([...next, { role: "assistant", content: result.text }]);
     } catch (err) {
+      if (reqId.current !== id) return;
       toast.error(err instanceof Error ? err.message : "Coach failed");
     } finally {
-      setBusy(false);
+      if (reqId.current === id) setBusy(false);
     }
   }
 
   return (
-    <aside id="study-coach" className="h-fit rounded-3xl border border-dashed border-ink/30 bg-primary/20 p-5 lg:sticky lg:top-20">
-      <p className="font-serif text-lg">Study coach</p>
-      <p className="mt-1 text-sm text-muted">
-        Asking about <span className="font-semibold text-ink">{check.qid}</span>
-      </p>
-      <p className="mt-1 line-clamp-3 text-sm text-ink">{check.prompt}</p>
+    <aside
+      id="study-coach"
+      className="flex h-[min(78dvh,44rem)] flex-col rounded-3xl border border-dashed border-ink/30 bg-primary/20 p-4 lg:sticky lg:top-20 lg:h-[calc(100dvh-6.5rem)]"
+    >
+      <div className="flex items-start justify-between gap-2">
+        <div>
+          <p className="font-serif text-base font-normal">Study coach</p>
+          <p className="mt-1 text-xs font-normal text-muted">
+            Asking about <span className="text-ink">{check.qid}</span>
+          </p>
+        </div>
+        <Button type="button" variant="ghost" size="sm" disabled={busy || messages.length === 0} onClick={clearChat}>
+          Clear
+        </Button>
+      </div>
+      <p className="mt-1 line-clamp-2 text-xs font-normal text-ink">{check.prompt}</p>
       {!ready ? (
-        <Button asChild variant="outline" size="sm" className="mt-4">
+        <Button asChild variant="outline" size="sm" className="mt-4 w-fit">
           <Link to="/settings">Add a key</Link>
         </Button>
       ) : (
         <>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2">
             <Button
               type="button"
               variant="outline"
@@ -124,7 +156,7 @@ export function TutorPanel({
               {revealed ? "Walk through" : "Hint"}
             </Button>
           </div>
-          <div className="mt-3 max-h-64 space-y-3 overflow-y-auto text-sm">
+          <div ref={logRef} className="mt-3 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1 text-xs font-normal">
             {messages.length === 0 ? (
               <p className="text-muted">Press Ask coach on a question, then talk here.</p>
             ) : (
@@ -133,11 +165,11 @@ export function TutorPanel({
                   key={i}
                   className={
                     m.role === "user"
-                      ? "rounded-2xl bg-surface px-3 py-2"
-                      : "rounded-2xl border border-border bg-bg px-3 py-2"
+                      ? "rounded-2xl bg-surface px-3 py-2 font-normal"
+                      : "rounded-2xl border border-border bg-bg px-3 py-2 font-normal"
                   }
                 >
-                  {m.role === "assistant" ? <Prose text={m.content} /> : m.content}
+                  {m.role === "assistant" ? <Prose text={m.content} className="note-prose-coach" /> : m.content}
                 </div>
               ))
             )}
@@ -152,7 +184,7 @@ export function TutorPanel({
             }}
           >
             <input
-              className="h-11 flex-1 rounded-full border border-border bg-surface px-4 text-sm outline-none focus:border-ink"
+              className="h-10 flex-1 rounded-full border border-border bg-surface px-4 text-xs font-normal outline-none focus:border-ink"
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               placeholder={`Ask about ${check.qid}…`}
