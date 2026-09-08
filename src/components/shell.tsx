@@ -4,6 +4,7 @@ import { useEffect, type ReactNode } from "react";
 import { Mark } from "@/components/mark";
 import { aiReady, useAiSettings } from "@/lib/ai/settings-store";
 import { useLibrary } from "@/lib/library-store";
+import { loadMathJax } from "@/lib/math/mathjax";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -18,6 +19,7 @@ export function Shell({ children }: { children: ReactNode }) {
   const on = aiReady(settings);
 
   useEffect(() => {
+    void loadMathJax();
     void (async () => {
       await useLibrary.getState().hydrate();
       await useAiSettings.getState().hydrate();

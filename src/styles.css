@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "katex/dist/katex.min.css";
 
 @theme {
   --color-bg: #f6f3ea;
@@ -152,16 +151,25 @@
   text-align: left;
 }
 
-.note-prose .katex-display {
-  margin: 1.1rem 0;
-  padding: 0.85rem 0.4rem;
+.math-inline {
+  font-weight: 400;
+}
+
+.math-display {
+  display: block;
+  margin: 0.9rem 0;
   overflow-x: auto;
-  overflow-y: hidden;
   text-align: center;
 }
 
-.note-prose .katex {
-  font-size: 1.08em;
+.note-prose mjx-container {
+  font-size: 1.05em;
+}
+
+.note-prose mjx-container[display="true"] {
+  margin: 0.85rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .note-prose-lesson {
@@ -237,8 +245,4 @@
 
 .note-prose-coach .note-code {
   font-size: 0.75rem;
-}
-
-.note-prose-coach .katex {
-  font-size: 1em;
 }

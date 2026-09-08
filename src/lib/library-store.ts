@@ -117,7 +117,7 @@ export const useLibrary = create<LibraryState>((set, get) => ({
         await db.meta.put({ key: "seeded", value: true });
       }
 
-      const sampleFlag = await db.meta.get("samples-v2");
+      const sampleFlag = await db.meta.get("samples-v3");
       if (!sampleFlag) {
         const now = Date.now();
         for (const sample of SAMPLE_ROOMS) {
@@ -131,7 +131,7 @@ export const useLibrary = create<LibraryState>((set, get) => ({
             updatedAt: now,
           });
         }
-        await db.meta.put({ key: "samples-v2", value: true });
+        await db.meta.put({ key: "samples-v3", value: true });
       }
       const [roomRows, progressRows, semesters, courses, chapters] = await Promise.all([
         db.rooms.toArray(),

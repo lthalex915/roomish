@@ -191,10 +191,10 @@ function TaskView({
               )}
             >
               <div className="flex items-start justify-between gap-3">
-                <p className="font-medium">
-                  <span className="mr-2 text-xs uppercase tracking-wide text-muted">Q{index + 1}</span>
-                  {check.prompt}
-                </p>
+                <div className="min-w-0 font-normal">
+                  <p className="text-xs uppercase tracking-wide text-muted">Q{index + 1}</p>
+                  <Prose text={check.prompt} className="note-prose-lesson mt-1" />
+                </div>
                 <Button
                   type="button"
                   variant={pinned ? "primary" : "outline"}

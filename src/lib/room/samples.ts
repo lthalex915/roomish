@@ -143,7 +143,7 @@ export const photosynthesisRoom: Room = {
       id: "T1",
       title: "The word equation",
       teach:
-        "Photosynthesis uses carbon dioxide and water. Light energy drives the reaction. The products are glucose and oxygen. It happens in chloroplasts.\n\nThe symbol equation is\n\n$$\n6CO_2 + 6H_2O \\xrightarrow{\\text{light}} C_6H_{12}O_6 + 6O_2\n$$\n\nIn words: carbon dioxide + water $\\rightarrow$ glucose + oxygen.",
+        "Photosynthesis uses carbon dioxide and water. Light energy drives the reaction. The products are glucose and oxygen. It happens in chloroplasts.\n\nThe symbol equation is\n\n\\[\n6CO_2 + 6H_2O \\xrightarrow{\\text{light}} C_6H_{12}O_6 + 6O_2\n\\]\n\nIn words: carbon dioxide + water \\(\\rightarrow\\) glucose + oxygen.",
       checks: [
         {
           qid: "T1-Q1",

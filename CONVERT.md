@@ -34,6 +34,36 @@ No key is stored. Roomish only reads the file on this device.
 
 ---
 
+## Math in notes
+
+Roomish renders math with MathJax. **Do not** wrap formulas in single dollar signs.
+
+| Kind | Write this |
+|---|---|
+| Inline | `\( \mathbf{0} \)` |
+| Display (own line) | `\[ E = mc^2 \]` |
+| Money | `$100` (plain text) |
+
+Existing files that still use `$...$` for math are converted on screen. New lessons should use `\(` `\)`.
+
+MathJax is loaded with this config:
+
+```html
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+```
+
+---
+
 ## Ready-to-use prompt
 
 Copy the block below. Paste it as the first message. Put your notes at the bottom.
@@ -59,7 +89,7 @@ Hard rules:
 - checks[].qid must be unique, like T1-Q1
 - Each task teaches ONE idea in "teach", then asks
 - teach, prompt, hint, explain may use Markdown
-- Math: TeX with $inline$ and $$display$$ on their own lines
+- Math: MathJax only. SINGLE DOLLAR SIGN ($ ... $) is STRICTLY PROHIBITED as a math delimiter. Use \\( ... \\) for inline math and \\[ ... \\] for display math. Literal currency such as $100 stays as text. Example: the zero vector \\(\\mathbf{0}\\).
 - Code: markdown fences with a language tag inside the JSON strings (escaped newlines)
 - Break teach into short paragraphs, lists, or a formula — not one giant paragraph
 - If the user already pasted questions, keep their wording and answers

@@ -71,7 +71,7 @@ If `git pull` complains about local edits, copy your JSON files somewhere safe, 
 
 To make a lesson **without** putting an API key in Roomish, use any chat you like and paste the result onto the Shelf. Full steps and a copy-paste prompt: **[CONVERT.md](CONVERT.md)**.
 
-Math uses TeX (`$E=mc^2$` or `$$...$$`). Code uses Markdown fences. Notes sit as ordinary reading, not one big grey box.
+Math is MathJax: write `\(E=mc^2\)` inline and `\[ ... \]` on its own lines. Do not wrap math in `$...$` — a lone `$` is money, like `$100`. Code uses Markdown fences. Notes sit as ordinary reading, not one big grey box.
 
 ---
 
