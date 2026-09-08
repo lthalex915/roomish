@@ -174,7 +174,7 @@ function TaskView({
       <p className="text-xs uppercase tracking-[0.16em] text-muted">{task.id.replace("T", "Page ")}</p>
       <h1 className="mt-1 font-serif text-3xl">{task.title}</h1>
       <section className="mt-6">
-        <Prose text={task.teach} />
+        <Prose text={task.teach} className="note-prose-lesson" />
       </section>
       <div className="mt-8 grid gap-6">
         {task.checks.map((check, index) => {

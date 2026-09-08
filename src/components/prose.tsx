@@ -19,6 +19,9 @@ const components: Components = {
       {children}
     </a>
   ),
+  strong: ({ children }) => <span>{children}</span>,
+  b: ({ children }) => <span>{children}</span>,
+  em: ({ children }) => <em className="font-normal italic">{children}</em>,
   code: ({ className, children, ...props }) => {
     const text = String(children).replace(/\n$/, "");
     const fenced = Boolean(className) || text.includes("\n");

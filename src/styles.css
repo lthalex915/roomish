@@ -164,6 +164,51 @@
   font-size: 1.08em;
 }
 
+.note-prose-lesson {
+  max-width: 38rem;
+}
+
+.note-prose-lesson .note-p,
+.note-prose-lesson .note-li,
+.note-prose-lesson .note-quote {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.note-prose-lesson .note-p {
+  margin: 0 0 1.05em;
+}
+
+.note-prose-lesson .note-h {
+  margin: 1.15em 0 0.45em;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+}
+
+.note-prose-lesson .note-ul,
+.note-prose-lesson .note-ol {
+  margin: 0 0 1.05em;
+  padding-left: 1.1rem;
+}
+
+.note-prose-lesson .note-li {
+  margin: 0.2rem 0;
+}
+
+.note-prose-lesson strong,
+.note-prose-lesson b {
+  font-weight: 400;
+}
+
+.note-prose-lesson em,
+.note-prose-lesson i {
+  font-style: italic;
+  font-weight: 400;
+}
+
 .note-prose-coach {
   max-width: none;
 }
