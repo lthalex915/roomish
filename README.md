@@ -1,6 +1,6 @@
 # Roomish — a paper notebook of short lessons
 
-Roomish turns a topic or a pile of notes into a short guided lesson. You read a page, then answer. It is **not** a hacking platform and is not affiliated with TryHackMe or any CTF site.
+Roomish turns a topic or a pile of notes into a short guided lesson. You read a page, then answer. 
 
 Quizzes, answers, course folders, and your API key live in a **local database on your device**. There is no Roomish account.
 
