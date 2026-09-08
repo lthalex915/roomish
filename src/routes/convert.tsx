@@ -102,6 +102,13 @@ function ConvertPage() {
         <p className="text-sm uppercase tracking-[0.18em] text-muted">Compose</p>
         <h1 className="mt-2 font-serif text-4xl">Turn notes into a lesson</h1>
         <p className="mt-2 text-muted">One generation. Replay for free. Filed on this device.</p>
+        <p className="mt-2 text-sm text-muted">
+          No key? Use any other chat, then paste the JSON on the Shelf. See{" "}
+          <a className="text-ink underline" href="https://github.com/lthalex915/roomish/blob/main/CONVERT.md">
+            CONVERT.md
+          </a>
+          .
+        </p>
         {!ready ? (
           <div className="mt-4 rounded-3xl border border-border bg-surface p-4 text-sm">
             Compose needs your own key.

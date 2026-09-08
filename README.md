@@ -69,6 +69,8 @@ If `git pull` complains about local edits, copy your JSON files somewhere safe, 
 5. **Study coach** — press **Ask coach** on a question, then talk on the right. Needs a key.
 6. **Import JSON** — drop in a Roomish file. No AI needed.
 
+To make a lesson **without** putting an API key in Roomish, use any chat you like and paste the result onto the Shelf. Full steps and a copy-paste prompt: **[CONVERT.md](CONVERT.md)**.
+
 Math uses TeX (`$E=mc^2$` or `$$...$$`). Code uses Markdown fences. Notes sit as ordinary reading, not one big grey box.
 
 ---
